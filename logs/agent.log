@@ -1,0 +1,150 @@
+2025-11-18 22:04:43,650 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-18 22:04:43,656 [INFO] GiftGenie run started.
+2025-11-18 22:04:43,657 [INFO] Loaded 2 memory entries from memory.json
+2025-11-18 22:04:43,659 [INFO] Gemini configured with model: gemini-2.5-flash-lite
+2025-11-18 22:04:43,659 [INFO] Orchestrator: starting new session pipeline.
+2025-11-18 22:05:16,131 [INFO] Collected user inputs: recipient=friend, age=27, relationship=friend, occasion=birthday, budget=50
+2025-11-18 22:05:16,132 [INFO] Persona agent built profile for friend (occasion=birthday, budget=50)
+2025-11-18 22:05:16,132 [INFO] Gift ideas agent: generating ideas for friend
+2025-11-18 22:05:18,214 [INFO] Gift ideas agent: received ideas for friend
+2025-11-18 22:05:18,220 [INFO] Filter agent: starting with budget=50
+2025-11-18 22:05:18,221 [INFO] Price filter tool: applying budget=50
+2025-11-18 22:05:19,750 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 22:05:19,750 [INFO] Filter agent: finished filtering for friend
+2025-11-18 22:05:19,751 [INFO] Orchestrator: session pipeline completed for friend
+2025-11-18 22:05:38,299 [INFO] Loaded 2 memory entries from memory.json
+2025-11-18 22:05:38,300 [INFO] Saved 3 memory entries to memory.json
+2025-11-18 22:05:38,300 [INFO] Appended new memory entry for friend (birthday).
+2025-11-18 22:05:38,301 [INFO] User saved chosen gift: speaker
+2025-11-18 22:05:38,301 [INFO] GiftGenie run finished.
+2025-11-18 22:08:55,981 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-18 22:08:55,982 [INFO] Gemini configured with model: gemini-2.5-flash-lite
+2025-11-18 22:08:55,983 [INFO] Persona agent built profile for my 10-year-old nephew (occasion=birthday, budget=30)
+2025-11-18 22:08:55,983 [INFO] Gift ideas agent: generating ideas for my 10-year-old nephew
+2025-11-18 22:08:57,681 [INFO] Gift ideas agent: received ideas for my 10-year-old nephew
+2025-11-18 22:08:57,681 [INFO] Filter agent: starting with budget=30
+2025-11-18 22:08:57,682 [INFO] Price filter tool: applying budget=30
+2025-11-18 22:08:58,952 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 22:08:58,953 [INFO] Filter agent: finished filtering for my 10-year-old nephew
+2025-11-18 22:08:58,959 [INFO] Persona agent built profile for my sister (occasion=graduation, budget=50)
+2025-11-18 22:08:58,959 [INFO] Gift ideas agent: generating ideas for my sister
+2025-11-18 22:09:00,395 [INFO] Gift ideas agent: received ideas for my sister
+2025-11-18 22:09:00,396 [INFO] Filter agent: starting with budget=50
+2025-11-18 22:09:00,397 [INFO] Price filter tool: applying budget=50
+2025-11-18 22:09:01,587 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 22:09:01,588 [INFO] Filter agent: finished filtering for my sister
+2025-11-18 22:09:01,594 [INFO] Persona agent built profile for a coworker (occasion=thank you, budget=20)
+2025-11-18 22:09:01,594 [INFO] Gift ideas agent: generating ideas for a coworker
+2025-11-18 22:09:03,000 [INFO] Gift ideas agent: received ideas for a coworker
+2025-11-18 22:09:03,001 [INFO] Filter agent: starting with budget=20
+2025-11-18 22:09:03,003 [INFO] Price filter tool: applying budget=20
+2025-11-18 22:09:04,037 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 22:09:04,038 [INFO] Filter agent: finished filtering for a coworker
+2025-11-18 23:15:13,944 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-18 23:15:13,944 [INFO] Gemini configured with model: gemini-2.5-flash-lite
+2025-11-18 23:19:15,964 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-18 23:19:15,964 [INFO] Gemini configured with model: gemini-2.5-flash-lite
+2025-11-18 23:23:19,725 [INFO] Pipeline: starting for recipient=my sister
+2025-11-18 23:23:19,728 [INFO] Persona agent built profile for my sister (occasion=birthday, budget=50)
+2025-11-18 23:23:19,729 [INFO] Gift ideas agent: generating ideas for my sister
+2025-11-18 23:23:21,266 [INFO] Gift ideas agent: received ideas for my sister
+2025-11-18 23:23:21,266 [INFO] Filter agent: starting with budget=50
+2025-11-18 23:23:21,268 [INFO] Price filter tool: applying budget=50
+2025-11-18 23:23:22,390 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 23:23:22,391 [INFO] Filter agent: finished filtering for my sister
+2025-11-18 23:23:22,392 [INFO] Pipeline: completed for my sister (occasion=birthday, budget=50)
+2025-11-18 23:23:22,431 [INFO] Loaded 3 memory entries from memory.json
+2025-11-18 23:25:49,716 [INFO] Pipeline: starting for recipient=Praneeth Reddy Nimma
+2025-11-18 23:25:49,718 [INFO] Persona agent built profile for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:25:49,719 [INFO] Gift ideas agent: generating ideas for Praneeth Reddy Nimma
+2025-11-18 23:25:51,256 [INFO] Gift ideas agent: received ideas for Praneeth Reddy Nimma
+2025-11-18 23:25:51,257 [INFO] Filter agent: starting with budget=$50
+2025-11-18 23:25:51,259 [INFO] Price filter tool: applying budget=$50
+2025-11-18 23:25:52,553 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 23:25:52,554 [INFO] Filter agent: finished filtering for Praneeth Reddy Nimma
+2025-11-18 23:25:52,555 [INFO] Pipeline: completed for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:25:52,556 [INFO] Loaded 3 memory entries from memory.json
+2025-11-18 23:26:12,769 [INFO] Pipeline: starting for recipient=Praneeth Reddy Nimma
+2025-11-18 23:26:12,770 [INFO] Persona agent built profile for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:26:12,771 [INFO] Gift ideas agent: generating ideas for Praneeth Reddy Nimma
+2025-11-18 23:26:14,626 [INFO] Gift ideas agent: received ideas for Praneeth Reddy Nimma
+2025-11-18 23:26:14,627 [INFO] Filter agent: starting with budget=$50
+2025-11-18 23:26:14,628 [INFO] Price filter tool: applying budget=$50
+2025-11-18 23:26:15,831 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 23:26:15,832 [INFO] Filter agent: finished filtering for Praneeth Reddy Nimma
+2025-11-18 23:26:15,832 [INFO] Pipeline: completed for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:26:15,834 [INFO] Loaded 3 memory entries from memory.json
+2025-11-18 23:34:29,450 [INFO] Pipeline: starting for recipient=Praneeth Reddy Nimma
+2025-11-18 23:34:29,453 [INFO] Persona agent built profile for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:34:29,453 [INFO] Gift ideas agent: generating ideas for Praneeth Reddy Nimma
+2025-11-18 23:34:31,937 [INFO] Gift ideas agent: received ideas for Praneeth Reddy Nimma
+2025-11-18 23:34:31,938 [INFO] Filter agent: starting with budget=$50
+2025-11-18 23:34:31,939 [INFO] Price filter tool: applying budget=$50
+2025-11-18 23:34:32,862 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 23:34:32,863 [INFO] Filter agent: finished filtering for Praneeth Reddy Nimma
+2025-11-18 23:34:32,864 [INFO] Pipeline: completed for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:34:32,866 [INFO] Loaded 3 memory entries from memory.json
+2025-11-18 23:38:01,019 [INFO] Pipeline: starting for recipient=Praneeth Reddy Nimma
+2025-11-18 23:38:01,021 [INFO] Persona agent built profile for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:38:01,021 [INFO] Gift ideas agent: generating ideas for Praneeth Reddy Nimma
+2025-11-18 23:38:02,993 [INFO] Gift ideas agent: received ideas for Praneeth Reddy Nimma
+2025-11-18 23:38:02,994 [INFO] Filter agent: starting with budget=$50
+2025-11-18 23:38:02,996 [INFO] Price filter tool: applying budget=$50
+2025-11-18 23:38:04,305 [INFO] Price filter tool: completed budget filtering.
+2025-11-18 23:38:04,306 [INFO] Filter agent: finished filtering for Praneeth Reddy Nimma
+2025-11-18 23:38:04,307 [INFO] Pipeline: completed for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:38:04,309 [INFO] Loaded 3 memory entries from memory.json
+2025-11-18 23:50:54,975 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-18 23:50:54,976 [INFO] Gemini configured with model: gemini-2.0-flash-exp
+2025-11-18 23:51:08,772 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-18 23:51:08,773 [INFO] Gemini configured with model: gemini-2.0-flash-exp
+2025-11-18 23:51:15,623 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-18 23:51:15,624 [INFO] Gemini configured with model: gemini-2.0-flash-exp
+2025-11-18 23:51:55,599 [INFO] Pipeline: starting for recipient=Praneeth Reddy Nimma
+2025-11-18 23:51:55,602 [INFO] Persona agent built profile for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:51:55,603 [INFO] Gift ideas agent: generating ideas for Praneeth Reddy Nimma
+2025-11-18 23:52:24,443 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-18 23:52:24,443 [INFO] Gemini configured with model: gemini-2.0-flash-exp
+2025-11-18 23:52:35,067 [INFO] Pipeline: starting for recipient=Praneeth Reddy Nimma
+2025-11-18 23:52:35,069 [INFO] Persona agent built profile for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:52:35,070 [INFO] Gift ideas agent: generating ideas for Praneeth Reddy Nimma
+2025-11-18 23:58:24,475 [INFO] Pipeline: starting for recipient=Praneeth Reddy Nimma
+2025-11-18 23:58:24,477 [INFO] Persona agent built profile for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:58:24,478 [INFO] Gift ideas agent: generating ideas for Praneeth Reddy Nimma
+2025-11-18 23:58:27,054 [INFO] Gift ideas agent: received 5 gifts for Praneeth Reddy Nimma
+2025-11-18 23:58:27,055 [INFO] Filter agent: starting with budget=$50
+2025-11-18 23:58:27,057 [INFO] Price filter tool: applying budget=$50
+2025-11-18 23:58:29,375 [INFO] Price filter tool: completed budget filtering (5 gifts).
+2025-11-18 23:58:29,376 [INFO] Filter agent: finished filtering for Praneeth Reddy Nimma
+2025-11-18 23:58:29,377 [INFO] Pipeline: completed for Praneeth Reddy Nimma (occasion=Birthday, budget=$50)
+2025-11-18 23:58:29,379 [INFO] Loaded 3 memory entries from memory.json
+2025-11-19 00:01:18,949 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-19 00:02:56,586 [INFO] ✅ Logging initialized. Writing to logs/agent.log
+2025-11-19 00:02:56,587 [INFO] Gemini configured with model: gemini-2.0-flash-exp
+2025-11-19 00:02:56,587 [INFO] Pipeline: starting for recipient=my 10-year-old nephew
+2025-11-19 00:02:56,588 [INFO] Persona agent built profile for my 10-year-old nephew (occasion=birthday, budget=30)
+2025-11-19 00:02:56,588 [INFO] Gift ideas agent: generating ideas for my 10-year-old nephew
+2025-11-19 00:02:59,879 [INFO] Gift ideas agent: received 5 gifts for my 10-year-old nephew
+2025-11-19 00:02:59,879 [INFO] Filter agent: starting with budget=30
+2025-11-19 00:02:59,881 [INFO] Price filter tool: applying budget=30
+2025-11-19 00:03:02,607 [INFO] Price filter tool: completed budget filtering (5 gifts).
+2025-11-19 00:03:02,608 [INFO] Filter agent: finished filtering for my 10-year-old nephew
+2025-11-19 00:03:02,609 [INFO] Pipeline: completed for my 10-year-old nephew (occasion=birthday, budget=30)
+2025-11-19 00:03:02,621 [INFO] Pipeline: starting for recipient=my sister
+2025-11-19 00:03:02,621 [INFO] Persona agent built profile for my sister (occasion=graduation, budget=50)
+2025-11-19 00:03:02,622 [INFO] Gift ideas agent: generating ideas for my sister
+2025-11-19 00:03:05,409 [INFO] Gift ideas agent: received 5 gifts for my sister
+2025-11-19 00:03:05,410 [INFO] Filter agent: starting with budget=50
+2025-11-19 00:03:05,411 [INFO] Price filter tool: applying budget=50
+2025-11-19 00:03:08,049 [INFO] Price filter tool: completed budget filtering (5 gifts).
+2025-11-19 00:03:08,050 [INFO] Filter agent: finished filtering for my sister
+2025-11-19 00:03:08,050 [INFO] Pipeline: completed for my sister (occasion=graduation, budget=50)
+2025-11-19 00:03:08,057 [INFO] Pipeline: starting for recipient=a coworker
+2025-11-19 00:03:08,059 [INFO] Persona agent built profile for a coworker (occasion=thank you, budget=20)
+2025-11-19 00:03:08,060 [INFO] Gift ideas agent: generating ideas for a coworker
+2025-11-19 00:03:10,398 [INFO] Gift ideas agent: received 5 gifts for a coworker
+2025-11-19 00:03:10,399 [INFO] Filter agent: starting with budget=20
+2025-11-19 00:03:10,401 [INFO] Price filter tool: applying budget=20
+2025-11-19 00:03:12,653 [INFO] Price filter tool: completed budget filtering (5 gifts).
+2025-11-19 00:03:12,654 [INFO] Filter agent: finished filtering for a coworker
+2025-11-19 00:03:12,655 [INFO] Pipeline: completed for a coworker (occasion=thank you, budget=20)

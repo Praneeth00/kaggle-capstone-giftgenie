@@ -1,0 +1,56 @@
+[
+  {
+    "timestamp": "2025-11-18T22:00:22",
+    "persona_profile": {
+      "display_name": "sister",
+      "age": "25",
+      "relationship": "sister",
+      "occasion": "birthday",
+      "budget": "75",
+      "interests": [
+        "medicine"
+      ],
+      "dislikes": [
+        "no"
+      ]
+    },
+    "chosen_gift": "puzzle",
+    "notes": "Saved from CLI session"
+  },
+  {
+    "timestamp": "2025-11-18T22:01:22",
+    "persona_profile": {
+      "display_name": "friend",
+      "age": "30",
+      "relationship": "friend",
+      "occasion": "birthday",
+      "budget": "50",
+      "interests": [
+        "travel"
+      ],
+      "dislikes": [
+        "no"
+      ]
+    },
+    "chosen_gift": "water bottle",
+    "notes": "Saved from CLI session"
+  },
+  {
+    "timestamp": "2025-11-18T22:05:38",
+    "persona_profile": {
+      "display_name": "friend",
+      "age": "27",
+      "relationship": "friend",
+      "occasion": "birthday",
+      "budget": "50",
+      "interests": [
+        "outdoor games"
+      ],
+      "dislikes": [
+        "no"
+      ]
+    },
+    "chosen_gift": "speaker",
+    "notes": "Saved from CLI session"
+  }
+]
