@@ -157,17 +157,15 @@ logs/agent.log
 
 ⭐ 8. Deployment (Optional, +5 Bonus)
 
-Backend is Cloud Run–ready:
 
-gcloud run deploy giftgenie-api \
-  --source . \
-  --region us-central1 \
-  --allow-unauthenticated
+- Backend (FastAPI + multi-agent) deployed on **Google Cloud Run**:  
+  `https://kaggle-capstone-giftgenie-1056868419677.europe-west1.run.app/`
 
+- Frontend (Next.js GiftGenie UI) deployed on **Vercel**:  
+  `https://giftgenie-web.vercel.app/`
 
-Then set:
+The Next.js app uses the `GIFTGENIE_BACKEND_URL` environment variable to call the Cloud Run backend.
 
-GIFTGENIE_BACKEND_URL="https://your-cloudrun-url/giftgenie"
 
 ⭐ 9. Technologies Used
 
