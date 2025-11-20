@@ -132,8 +132,6 @@ It runs the agent on a handful of predefined cases and prints:
 - duplicate detection  
 - budget sanity check  
 
-This satisfies Kaggle’s **Agent Evaluation** requirement.
-
 ---
 
 # 6. Deployment (Cloud Run)
@@ -158,8 +156,6 @@ GEMINI_API_KEY
 ```
 
 The frontend uses this URL via `GIFTGENIE_BACKEND_URL`.
-
-This satisfies Kaggle’s **Agent Deployment** bonus category.
 
 ---
 
