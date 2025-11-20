@@ -1,190 +1,213 @@
-🧞‍♂️ GiftGenie – Multi-Agent Gift Concierge
-Kaggle x Google – AI Agents Intensive (Concierge Agents Track)
+# GiftGenie Backend (FastAPI + Gemini Agents)
 
-GiftGenie is an AI-powered personal gift concierge that uses a multi-agent system, a custom Gemini tool, long-term memory, evaluation, and a clean Next.js UI to deliver exactly 5 personalized, budget-aware, meaningful gift ideas for any recipient.
+This repository contains the backend for **GiftGenie**, a small AI-powered gift recommendation tool built as part of the **Kaggle x Google 5-Day AI Agents Intensive Capstone Project**.
 
-This repository contains the backend, which powers all agent reasoning and is the official Kaggle Capstone submission.
+The goal of this backend is to show how a small but real multi-agent system can take simple user details and produce thoughtful, structured gift suggestions.
 
-Frontend repo (UI):
-➡️ https://github.com/Praneeth00/giftgenie-web
+The frontend (Next.js) is in a separate repo and sends requests to this backend.
 
-⭐ 1. Problem & Motivation
+---
 
-Choosing the perfect gift is mentally exhausting:
+# 1. Project Purpose
 
-You don’t know if the gift will be appreciated
+The idea behind GiftGenie is simple:  
+Most people struggle to think of a good gift when a birthday, anniversary, or event comes up. Search results are generic, and manually browsing ideas takes too much time.
 
-Budgets vary
+GiftGenie automates this by turning a few details about the recipient into **personalized gift ideas**, using a lightweight agent workflow powered by Gemini.
 
-Every person has a unique personality
+This project was submitted under the **Concierge Agents** track.
 
-Online “top 10 gifts” lists feel generic
+---
 
-GiftGenie solves this by acting as a personal AI gift concierge, powered by agents + Gemini.
+# 2. How the Agent System Works
 
-⭐ 2. Multi-Agent Architecture (Core of Project)
+The backend uses a small multi-agent pattern. Each step is simple on purpose, but together they form a clear agent workflow:
 
-GiftGenie uses three core agents + one tool:
+## **Step 1 — Input Structuring Agent**
+Cleans the raw fields and builds a consistent “persona” object for Gemini to work with.
 
-🟣 1. Persona Agent
+## **Step 2 — Gift Generation Agent (LLM-powered)**
+Calls **Gemini** to generate 5 JSON-formatted gift ideas:
+- title  
+- reason  
+- approximate price range  
 
-Transforms raw user inputs into structured persona profile:
+This ensures deterministic structure for the frontend.
 
-age
+## **Step 3 — Filtering Tool**
+A small custom tool (Python function) checks:
+- duplicates  
+- similarity to previously-suggested gifts  
+- approximate budget alignment  
 
-relationship
+This tool behaves like a post-processing agent step.
 
-interests
+## **Step 4 — Basic Memory**
+A simple JSON file (`memory.json`) stores recent requests.  
+This shows the concept of long-term memory without over-engineering.
 
-dislikes
+## **Step 5 — Logging**
+A log file (`logs/agent.log`) tracks generation steps to demonstrate observability.
 
-budget
+This setup covers the core Kaggle requirements:
+- **Multi-agent flow**
+- **LLM-powered agent**
+- **Custom tool**
+- **Basic memory**
+- **Simple logging (observability)**
+- **Evaluation script**
 
-occasion
+---
 
-🔵 2. Gift Ideas Agent (Gemini 2.0 Flash)
+# 3. Repository Structure
 
-Generates EXACT 5 gifts in strict JSON:
+```
+.
+├── api.py           # FastAPI app + /giftgenie endpoint
+├── main.py          # Agent workflow, prompts, and filtering tool
+├── evaluate.py      # Small script to test gift quality
+├── memory.json      # Long-term memory dump (basic)
+├── logs/
+│   └── agent.log    # Logging for observability
+├── requirements.txt
+└── README.md
+```
 
-{
-  "gifts": [
-    { "title": "...", "reason": "...", "priceRange": "..." }
-  ]
-}
+---
 
-🟠 3. Filter Agent
+# 4. Running Locally
 
-Uses a custom tool to refine gifts based on budget.
-
-🟡 4. Tool: price_filter_tool (custom)
-
-Gemini-powered JSON → JSON tool that:
-
-Removes over-budget gifts
-
-Reorders list
-
-Adds budget awareness
-
-Returns exactly 5 refined items
-
-🟢 5. Orchestrator
-
-Connects all agents, memory, evaluation, and API.
-
-⭐ 3. System Architecture Diagram
-                                   ┌──────────────────────────┐
-                                   │   Next.js Frontend (UI)  │
-                                   └─────────┬────────────────┘
-                                             │ (POST /api/suggest-gifts)
-                                             ▼
-                             ┌────────────────────────────────────────┐
-                             │         FastAPI Backend (This Repo)    │
-                             └───────────┬────────────────────────────┘
-                                         │
-             ┌───────────────────────────┼──────────────────────────────┬──────────────────────────┐
-             ▼                           ▼                              ▼                          ▼
-     ┌────────────────┐          ┌─────────────────┐          ┌─────────────────┐         ┌────────────────┐
-     │ Persona Agent  │   →      │ Gift Ideas Agent│   →      │ Filter Agent    │   →     │ Final JSON     │
-     └────────────────┘          └─────────────────┘          │ + price tool    │         │ (5 items)      │
-                                                               └─────────────────┘         └────────────────┘
-
-
-⭐ 4. Features Satisfying Kaggle Capstone Requirements
-✔ Multi-agent system
-✔ Custom tool (JSON→JSON LLM agent tool)
-✔ Gemini API usage
-✔ Sessions & state
-✔ Long-term memory (memory.json)
-✔ Context engineering
-✔ Observability (logs/agent.log)
-✔ Agent evaluation (evaluate.py)
-✔ Deployment-ready backend (FastAPI)
-✔ JSON-based interface for UI integration
-
-Everything required by the rubric is implemented clearly.
-
-⭐ 5. Repository Structure
-backend/
-  main.py               <-- Multi-agent pipeline
-  api.py                <-- FastAPI backend (official endpoint)
-  evaluate.py           <-- Agent evaluation
-  memory.json           <-- Long-term memory store
-  logs/agent.log        <-- Observability logs
-  requirements.txt
-  README.md             <-- This file
-
-
-Frontend UI repo (Next.js):
-➡️ https://github.com/Praneeth00/giftgenie-web
-
-⭐ 6. Setup Instructions (Backend)
-1. Install dependencies
+### Install dependencies:
+```bash
 pip install -r requirements.txt
+```
 
-2. Set Gemini API key
-Windows PowerShell:
-$env:GEMINI_API_KEY="YOUR_KEY"
+### Set your Gemini API key:
 
-Mac/Linux:
+**Windows PowerShell:**
+```powershell
+$env:GEMINI_API_KEY = "YOUR_KEY"
+```
+
+**macOS / Linux:**
+```bash
 export GEMINI_API_KEY="YOUR_KEY"
+```
 
-3. Run FastAPI backend
+### Start the server:
+```bash
 uvicorn api:app --reload --port 8000
+```
 
+### API URLs:
+- Swagger docs → http://localhost:8000/docs  
+- Main endpoint → POST http://localhost:8000/giftgenie  
 
-Backend endpoint:
+### Example request:
+```json
+{
+  "recipient_name": "Sam",
+  "age": "27",
+  "relationship": "friend",
+  "occasion": "birthday",
+  "interests": "art, music",
+  "dislikes": "noisy gadgets",
+  "budget": "50"
+}
+```
 
-POST http://localhost:8000/giftgenie
+---
 
-⭐ 7. Running Evaluation (Agent Evaluation)
+# 5. Evaluation Script
+
+The project includes a simple test harness:
+
+```bash
 python evaluate.py
+```
+
+It runs the agent on a handful of predefined cases and prints:
+- a preview of generated gifts  
+- interest matching  
+- duplicate detection  
+- budget sanity check  
+
+This satisfies Kaggle’s **Agent Evaluation** requirement.
+
+---
+
+# 6. Deployment (Cloud Run)
+
+The backend is deployed to **Google Cloud Run**.
+
+Cloud Run provides:
+- automatic HTTPS  
+- environment variable support  
+- autoscaling  
+- easy integration with GitHub  
 
 
-This prints:
+### Actual API endpoint:
+```
+https://kaggle-capstone-giftgenie-1056868419677.europe-west1.run.app
+```
 
-Persona preview
+### Environment variable configured:
+```
+GEMINI_API_KEY
+```
 
-Final 5 gift ideas
+The frontend uses this URL via `GIFTGENIE_BACKEND_URL`.
 
-Interest coverage score
+This satisfies Kaggle’s **Agent Deployment** bonus category.
 
-Budget alignment score
+---
 
-Logs in:
+# 7. Technologies Used
 
-logs/agent.log
+- Python 3  
+- FastAPI  
+- Gemini  
+- Multi-agent pattern  
+- Custom tool for filtering  
+- Basic memory store  
+- Logging for observability  
+- Cloud Run deployment  
 
-⭐ 8. Deployment (Optional, +5 Bonus)
+---
 
+# 8. Frontend Repository
 
-- Backend (FastAPI + multi-agent) deployed on **Google Cloud Run**:  
-  `https://kaggle-capstone-giftgenie-1056868419677.europe-west1.run.app/`
+The GiftGenie UI is built separately:
 
-- Frontend (Next.js GiftGenie UI) deployed on **Vercel**:  
-  `https://giftgenie-web.vercel.app/`
+```
+https://github.com/Praneeth00/giftgenie-web
+```
 
-The Next.js app uses the `GIFTGENIE_BACKEND_URL` environment variable to call the Cloud Run backend.
+Live website (frontend + backend wired together):
 
+```
+https://giftgenie-web.vercel.app/
+```
 
-⭐ 9. Technologies Used
+The frontend speaks only to this backend and handles all display logic.
 
-Gemini 2.0 Flash
+---
 
-Python 3.10+
+# 9. Notes for Reproducibility (Kaggle Requirement)
 
-FastAPI
+Anyone with a Gemini API key can run this project locally by:
 
-Multi-agent architecture
+1. Cloning the repo  
+2. Installing dependencies  
+3. Adding `GEMINI_API_KEY`  
+4. Running `uvicorn api:app --reload`  
 
-Custom tools
+No other setup is required.
 
-JSON LLM outputs
+---
 
-Observability & logging
+# 10. License
 
-Evaluation metrics
+This project was created solely for educational use as part of the Kaggle x Google AI Agents Intensive.
 
-⭐ 10. License
-
-MIT License.
