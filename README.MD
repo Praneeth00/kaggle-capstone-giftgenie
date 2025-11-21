@@ -147,7 +147,7 @@ Cloud Run provides:
 
 ### Actual API endpoint:
 ```
-https://kaggle-capstone-giftgenie-1056868419677.europe-west1.run.app
+https://kaggle-capstone-giftgenie-1056868419677.europe-west1.run.app/giftgenie
 ```
 
 ### Environment variable configured:
