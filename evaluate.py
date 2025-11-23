@@ -21,9 +21,6 @@ from main import (
 )
 
 
-# -----------------------------
-# 1. TEST CASES
-# -----------------------------
 TEST_CASES = [
     {
         "name": "10-year-old nephew (Lego, budget 30)",
@@ -63,10 +60,6 @@ TEST_CASES = [
     },
 ]
 
-
-# -----------------------------
-# 2. HELPER FUNCTIONS FOR METRICS
-# -----------------------------
 def parse_budget(budget_str: str):
     """
     Parse a budget string (e.g. '50', '30-50') into a single numeric value.
@@ -131,10 +124,6 @@ def evaluate_interest_coverage(
     ratio = hits / total if total else 0.0
     return hits, total, ratio
 
-
-# -----------------------------
-# 3. EVALUATION PIPELINE
-# -----------------------------
 def run_test_case(model, test_case: Dict[str, Any]):
     """
     Run a full multi-agent pipeline for one test scenario

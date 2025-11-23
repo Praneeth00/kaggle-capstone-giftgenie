@@ -1,5 +1,3 @@
-# api.py - FastAPI wrapper around GiftGenie multi-agent backend (JSON pipeline)
-
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
@@ -19,7 +17,6 @@ from main import (
 
 app = FastAPI(title="GiftGenie Backend (JSON Pipeline)")
 
-# CORS – you can later restrict allow_origins to your Vercel domain
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -28,7 +25,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = None  # global LLM model instance
+model = None
 
 
 class GiftRequest(BaseModel):
@@ -91,7 +88,6 @@ def giftgenie_endpoint(req: GiftRequest):
     persona_profile = pipeline_result["persona_profile"]
     final_gifts = pipeline_result["final_gifts"]
 
-    # Optionally save chosen gift
     if req.save_choice and req.chosen_gift:
         entry = {
             "timestamp": datetime.now().isoformat(timespec="seconds"),
@@ -104,7 +100,6 @@ def giftgenie_endpoint(req: GiftRequest):
     full_memory = load_memory()
     memory_summary = summarize_memory(full_memory, limit=3)
 
-    # Pydantic will validate the Gift structure
     return GiftResponse(
         persona_profile=persona_profile,
         gifts=[Gift(**g) for g in final_gifts],

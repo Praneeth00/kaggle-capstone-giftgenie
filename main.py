@@ -13,10 +13,6 @@ except ImportError:
 
 MEMORY_FILE = "memory.json"
 
-
-# -----------------------------
-# 0A. LOGGING SETUP (OBSERVABILITY)
-# -----------------------------
 def setup_logging():
     """
     Configure logging to write both to console and to logs/agent.log.
@@ -33,10 +29,6 @@ def setup_logging():
     )
     logging.info("✅ Logging initialized. Writing to logs/agent.log")
 
-
-# -----------------------------
-# 0B. MEMORY HELPERS (LONG-TERM MEMORY)
-# -----------------------------
 def load_memory() -> List[Dict[str, Any]]:
     """
     Load long-term memory from a JSON file acting as a simple 'Memory Bank'.
@@ -111,10 +103,6 @@ def summarize_memory(memory: List[Dict[str, Any]], limit: int = 3) -> List[Dict[
         return []
     return memory[-limit:]
 
-
-# -----------------------------
-# 1. GEMINI SETUP
-# -----------------------------
 def setup_gemini():
     """
     Configure the Gemini client using an environment variable.
@@ -139,10 +127,6 @@ def setup_gemini():
     logging.info("Gemini configured with model: %s", model_name)
     return model
 
-
-# -----------------------------
-# 2. USER INPUT COLLECTION (CLI ONLY)
-# -----------------------------
 def collect_user_inputs() -> Dict[str, str]:
     """
     Ask the user basic questions about the gift (CLI only).
@@ -178,10 +162,6 @@ def collect_user_inputs() -> Dict[str, str]:
     )
     return info
 
-
-# -----------------------------
-# 3. PERSONA AGENT
-# -----------------------------
 def persona_agent(raw_info: Dict[str, str]) -> Dict[str, Any]:
     """
     Persona agent:
@@ -210,10 +190,6 @@ def persona_agent(raw_info: Dict[str, str]) -> Dict[str, Any]:
 
     return profile
 
-
-# -----------------------------
-# Helper: JSON parsing from model output
-# -----------------------------
 def _safe_load_json(text: str) -> Any:
     """
     Try to load JSON from a model response robustly.
@@ -223,35 +199,25 @@ def _safe_load_json(text: str) -> Any:
     if not text:
         raise ValueError("Empty model response")
 
-    # Remove markdown fences if present
     text = text.strip()
     if text.startswith("```"):
-        # remove ```json ... ``` or ``` ... ```
         text = text.strip("`")
-        # Some models return 'json\n{...}' at the start
         if "json" in text[:10].lower():
             text = text[text.lower().find("json") + 4 :].strip()
 
-    # Try direct JSON first
     try:
         return json.loads(text)
     except Exception:
         pass
 
-    # Fallback: find first '{' and last '}'
     start = text.find("{")
     end = text.rfind("}")
     if start != -1 and end != -1 and end > start:
         candidate = text[start : end + 1]
         return json.loads(candidate)
 
-    # Give up
     raise ValueError("Could not parse JSON from model text")
 
-
-# -----------------------------
-# 4. GIFT IDEAS AGENT (LLM-POWERED, STRICT JSON)
-# -----------------------------
 def build_gift_prompt(persona: Dict[str, Any]) -> str:
     """
     Turn the persona dict into a prompt for the gift ideas agent.
@@ -315,7 +281,6 @@ def gift_ideas_agent(model, persona: Dict[str, Any]) -> List[Dict[str, str]]:
     if not isinstance(gifts, list):
         raise ValueError("Model returned JSON without 'gifts' array")
 
-    # Normalize each gift
     normalized: List[Dict[str, str]] = []
     for g in gifts:
         if not isinstance(g, dict):
@@ -335,10 +300,6 @@ def gift_ideas_agent(model, persona: Dict[str, Any]) -> List[Dict[str, str]]:
     )
     return normalized
 
-
-# -----------------------------
-# 5. TOOL: PRICE FILTER / RERANKER (JSON → JSON)
-# -----------------------------
 def price_filter_tool(model, gifts: List[Dict[str, str]], budget: str) -> List[Dict[str, str]]:
     """
     A 'tool' that uses Gemini to re-check the ideas against the budget
@@ -408,10 +369,6 @@ def price_filter_tool(model, gifts: List[Dict[str, str]], budget: str) -> List[D
     logging.info("Price filter tool: completed budget filtering (%d gifts).", len(normalized))
     return normalized
 
-
-# -----------------------------
-# 6. FILTER AGENT (JSON → JSON)
-# -----------------------------
 def filter_agent(model, persona: Dict[str, Any], gifts: List[Dict[str, str]]) -> List[Dict[str, str]]:
     """
     Filter agent that delegates budget checking to price_filter_tool.
@@ -425,10 +382,6 @@ def filter_agent(model, persona: Dict[str, Any], gifts: List[Dict[str, str]]) ->
     logging.info("Filter agent: finished filtering for %s", persona["display_name"])
     return filtered_gifts
 
-
-# -----------------------------
-# 7. CORE PIPELINE (REUSABLE FOR CLI, API, EVAL)
-# -----------------------------
 def run_pipeline(model, raw_info: Dict[str, str]) -> Dict[str, Any]:
     """
     Core multi-agent pipeline:
@@ -467,10 +420,6 @@ def run_pipeline(model, raw_info: Dict[str, str]) -> Dict[str, Any]:
     )
     return result
 
-
-# -----------------------------
-# 8. ORCHESTRATOR AGENT (CLI SESSION + STATE)
-# -----------------------------
 def orchestrator_agent(model, session_state: Dict[str, Any]) -> List[Dict[str, str]]:
     """
     High-level controller for CLI sessions:
@@ -493,10 +442,6 @@ def orchestrator_agent(model, session_state: Dict[str, Any]) -> List[Dict[str, s
     )
     return pipeline_result["final_gifts"]
 
-
-# -----------------------------
-# 9. MAIN ENTRY POINT (CLI)
-# -----------------------------
 def main():
     """
     CLI entry point for GiftGenie.
@@ -512,7 +457,6 @@ def main():
     setup_logging()
     logging.info("GiftGenie CLI run started.")
 
-    # Session-scoped state (in-memory)
     session_state: Dict[str, Any] = {
         "persona_profile": None,
         "initial_gifts": None,
@@ -520,11 +464,9 @@ def main():
         "chosen_gift": None,
     }
 
-    # Long-term memory
     memory = load_memory()
     print_memory_summary(memory)
 
-    # Gemini model
     try:
         model = setup_gemini()
     except RuntimeError as e:
@@ -533,7 +475,6 @@ def main():
         print(e)
         return
 
-    # Run multi-agent pipeline
     final_gifts = orchestrator_agent(model, session_state)
 
     print("🎁 Final Budget-Aware Gift Ideas:\n")
@@ -543,7 +484,6 @@ def main():
             print(f"   {g['reason']}")
         print()
 
-    # Simple "save choice" interaction to memory bank
     print("\nIf you like one of these ideas, you can save it so GiftGenie remembers it next time.")
     chosen_gift = input(
         "Type the name or short description of the gift you chose (or press Enter to skip): "
